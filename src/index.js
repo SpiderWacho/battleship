@@ -1,3 +1,5 @@
+import './style.css'
+
 const ship = length => {
     let hits = {
         0: false,
@@ -121,8 +123,5 @@ const gameLoop = () => {
         let newPlayer = Player(true, newBoard);
     }
 }
-let newH = document.createElement('h1');
-newH.textContent = 'TITULO'
-document.body.appendChild(newH);
 
 export {ship, gameBoard, Player};
