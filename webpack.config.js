@@ -3,18 +3,22 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    index: './src/index.js',
+    domManipulation: './src/domManipulation.js'},
   devtool: 'inline-source-map',
   devServer: {
     static: './dist',
+    compress: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Output Management',
+      template: './src/index.html'
     }),
   ],
   output: {
-    filename: 'main.js',
+    filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
