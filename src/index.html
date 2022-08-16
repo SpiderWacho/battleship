@@ -7,23 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="title">    
-        <h1>Battleship</h1>
-    </div>
-    <div class="game">
         <div class="pregame">
-            <div class="board"></div>
-            <div class="controls">
-                <img src="" alt="boat" class="ship" id="5">
-                <img src="" alt="boat" class="ship" id="4">
-                <img src="" alt="boat" class="ship" id="3">
-                <img src="" alt="boat" class="ship" id="2">
-                <img src="" alt="boat" class="ship" id="1">
-                <img src="" alt="boat" class="ship" id="0">
+            <div class="title">    
+                <h1>BATTLESHIP</h1>
+            </div>
+            <div class="play-container">
+                <button id="play-button">Play</button>     
             </div>
         </div>
-    </div>
-    <footer></footer>
+        <div id="image"></div>
+        <div class="board-phase"> 
+            <div class="controls">
+                <button id="btn-orientation">Horizontal</button>
+                <img src="./img/5places.png" alt="boat" class="ship" data-lenght="5" id="carrier">
+                <img src="./img/4places.png" alt="boat" class="ship" data-lenght="4" id="battleship">
+                <img src="./img/3places.png" alt="boat" class="ship" data-lenght="3" id="submarine">
+                <img src="./img/2places.png" alt="boat" class="ship" data-lenght="2" id="destroyer">
+            </div>
+        </div>
+        <div class="game">
+                <div class="boards">
+                </div>
+        </div>
+        <footer></footer>
 
     
 </body>

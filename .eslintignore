@@ -1,0 +1,4 @@
+/.eslintrc.js
+/webpack.config.js
+/dist/
+/src/index.test.js

@@ -1,4 +1,9 @@
+/**
+ * @jest-environment jsdom
+ */
+
 import {ship, gameBoard, Player} from "./index.js";  
+
 
 test('Ship factory creates new ship', () => {
     let newShip = ship(2)
@@ -23,6 +28,20 @@ test('isSunk() detect when a ship is not sunked', () => {
 test('Gameboard factory correctly create a board', () => {
     let newBoard = gameBoard();
     expect(newBoard).not.toBe(undefined);
+})
+
+test('Place ship dont place ships outside of board', () => {
+    let newBoard = gameBoard();
+    let newShip = ship(5);
+    expect(() => {newBoard.placeShip(9, 9, newShip, true)}).toBe(1);
+})
+
+test('Place ship dont place ship if there is another ship in the path', () => {
+    let newBoard = gameBoard();
+    let newShip = ship(5);
+    let newShip2 = ship(5);
+    newBoard.placeShip(9, 4, newShip, true);
+    expect(() => {newBoard.placeShip(9, 4, newShip2, true)}).toBe(1);
 })
 
 test('ReceiveAttack() marks attack correctly', () => {
@@ -62,7 +81,7 @@ test('allShipSunked() detects when all ships are sunk', () => {
 test('Player can attack and sunk ships', () => {
     let newBoard = gameBoard();
     let secondShip = ship(3)
-    let newPlayer = Player(true, newBoard)
+    let newPlayer = Player(newBoard)
     newBoard.placeShip(5,1, secondShip, false) 
     newPlayer.makeAttack(5, 1);
     newPlayer.makeAttack(6, 1);
@@ -73,7 +92,7 @@ test('Player can attack and sunk ships', () => {
 test('takeTurn() effectively marks board as attacked', () => {
     let newBoard = gameBoard();
     let secondShip = ship(3)
-    let newPlayer = Player(true, newBoard)
+    let newPlayer = Player(newBoard)
     newBoard.placeShip(5,1, secondShip, false) 
     for (let i = 0; i < 100; i++) {
         newPlayer.takeTurn();
@@ -81,10 +100,10 @@ test('takeTurn() effectively marks board as attacked', () => {
     expect(newBoard.allShipSunked()).toBe(true);
 })
 
-test('takeTurn() with 100 plays made ocuppy every posible space', () => {
+test('takeTurn() with more than 100 plays run infinitly', () => {
     let newBoard = gameBoard();
     let secondShip = ship(3)
-    let newPlayer = Player(true, newBoard)
+    let newPlayer = Player(newBoard)
     newBoard.placeShip(5,1, secondShip, false) 
     expect(() => {    for (let i = 0; i < 101; i++) {
         newPlayer.takeTurn();
