@@ -5,8 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<script defer src="main.js"></script></head>
+<script defer src="main.bundle.js"></script></head>
 <body>
-    <h1>Battleship</h1>
+        <div class="pregame">
+            <div class="title">    
+                <h1>BATTLESHIP</h1>
+            </div>
+            <div class="play-container">
+                <button id="play-button">Play</button>     
+            </div>
+        </div>
+        <div id="image"></div>
+        <div class="board-phase"> 
+            <div class="controls">
+                <img src="37e7ad275dcfe577a783.png" alt="boat" class="ship" data-lenght="5" id="carrier">
+                <img src="92e0f77efbb82983f334.png" alt="boat" class="ship" data-lenght="4" id="cargo">
+                <img src="ae7bae2a46095646f009.png" alt="boat" class="ship" data-lenght="3" id="searcher">
+                <img src="899085aceacb00383b22.png" alt="boat" class="ship" data-lenght="2" id="backup">
+                <img src="bd678a98bab61f530d40.png" alt="boat" class="ship" data-lenght="1" id="submarine">
+            </div>
+        </div>
+        <div class="game">
+                <div class="boards">
+                </div>
+        </div>
+        <footer></footer>
+
+    
 </body>
 </html>
