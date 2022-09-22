@@ -4,6 +4,7 @@
 
 import {ship, gameBoard, Player} from "./index.js";  
 
+window.onload = 
 
 test('Ship factory creates new ship', () => {
     let newShip = ship(2)
@@ -30,16 +31,16 @@ test('Gameboard factory correctly create a board', () => {
     expect(newBoard).not.toBe(undefined);
 })
 
-test('Place ship dont place ships outside of board', () => {
+test.only('Place ship dont place ships outside of board', () => {
     let newBoard = gameBoard();
     let newShip = ship(5);
-    expect(() => {newBoard.placeShip(9, 9, newShip, true)}).toBe(1);
+    expect(() => {newBoard.placeShip(0, 0, newShip, true)}).toBe(1);
 })
 
 test('Place ship dont place ship if there is another ship in the path', () => {
     let newBoard = gameBoard();
     let newShip = ship(5);
-    let newShip2 = ship(5);
+    let newShip2 = ship(4);
     newBoard.placeShip(9, 4, newShip, true);
     expect(() => {newBoard.placeShip(9, 4, newShip2, true)}).toBe(1);
 })

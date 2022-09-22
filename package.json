@@ -14,6 +14,7 @@
       "js",
       "jsx"
     ],
+    "modulePathIgnorePatterns": ["<rootDir>/src/domManipulation.js"],
     "moduleDirectories": [
       "node_modules",
       "bower_components",
