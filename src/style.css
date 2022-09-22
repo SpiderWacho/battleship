@@ -3,7 +3,14 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+:root {
+    --background-color: rgb(15, 73, 90)
+}
+
+
 
 
 .pregame {
@@ -18,6 +25,7 @@
     background-color: #00111C;
     background:  radial-gradient(circle, rgba(3,0,60,1) 0%, rgba(0,0,159,1) 28%, rgba(10,10,126,1) 57%, rgba(0,0,148,1) 87%);
     box-shadow: 2px 0px 3px 1px black;
+    z-index: 2;
 }
 
 @keyframes removePre {
@@ -50,7 +58,7 @@ h1 {
 .play-container {
     height: 10vh;
     width: 100vw;
-    display: FLEX;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -81,24 +89,120 @@ h1 {
 .board-phase {
     height: 100vh;
     width: 100vw;
-    display: flex;
-    justify-content: centera;
-    align-items: center;
-    flex-wrap: nowrap;
-    background-color: #002E4E;
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-template-rows: 10% auto;
+    grid-template-areas: "controls title"
+                         "controls board";
+    background-color: var(--background-color);
 }
 
+.board-phase.in-game{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.boards {
+.controls {
+    border: 3px solid rgb(17, 17, 17);
     display: flex;
     justify-content: space-evenly;
-    max-height: 80%;
-    width: 75%;
+    align-items: center;
+    flex-direction: column;
+    grid-area: controls;
+    height: 100vh;
 }
 
-.pc-board, .player-board {
+.instructions {
+    grid-area: controls;
+    align-self: flex-end;
+    justify-self: center;
+    margin: 5%;
+}
+
+.controls.hidden {
+    animation: removeControls 1s ease-in-out forwards;
+}
+
+@keyframes removeControls {
+    0% {right: 0px;}
+    to {right: 100%;
+        display: none;}
+}
+
+
+
+.board-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    grid-area: board;
+}
+
+
+.board-container.in-game {
+    flex-wrap: nowrap;
+    height: 100%;
+    width: 100%;
+}
+
+.button-container {
+    align-self: start;
+    margin-bottom: 15%;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#place-player-ship, #reset-ship {
+    height: 30px;
+    width: 12%;
+    align-self: flex-end;
+    justify-self: center;
+    bottom: 5%;
+    background-color: #227fc2;
+    border: none;
+    color: white;
+    box-shadow: 0px 0px 3px .8px #00111C;
+}
+
+#place-player-ship:hover, #reset-ship:hover {
+    background-color: #316a96;
+
+}
+
+
+#start-game {
+    z-index: 1;
+    grid-area: board;
+    justify-self: center;
+    align-self: flex-end;
+    margin-bottom: 6%;
+    height: 6%;
+    width: 12%;
+    background-color: #002E4E;
+    border: none;
+    color: white;
+    box-shadow: 0px 0px 3px .8px #00111C;
+}
+
+#start-game:hover {
+    background-color: #11388d;
+    box-shadow: 0px 0px 3px .5px rgba(243, 243, 243, 0.267);
+}
+
+.board-title {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    grid-area: title;
+}
+
+.board-frame {
     margin: 3%;
-    height: auto;
+    align-self: flex-start;
     display: grid;
     grid-template-columns: repeat(10, auto);
     grid-template-rows: repeat(10, auto);
@@ -127,6 +231,10 @@ h1 {
     background-color: blueviolet;
 }
 
+.shipCell.hit {
+    box-shadow: inset 0 0 0 1000px rgba(255, 0, 0, 0.2);
+}
+
 .cell:hover {
     background-color: rgb(201, 201, 201);
 }
@@ -139,52 +247,113 @@ h1 {
     box-shadow: 0px 1px 3px 1px;
 }
 
+#btn-orientation:hover {
+    background-color: rgb(204, 154, 60);
+    box-shadow: 0px 0px 3px .1px rgba(245, 245, 245, 0.267);
+
+}    
+
 .ship {
-    height: 100px;
+    height: auto;
     width: 150px;
-    object-fit: contain;
+    object-fit: cover;
+    transition: all ease-in-out 0.2s;
+}
+
+.ship.selected {
+    border: 2px solid rgb(0, 0, 0);
+    box-shadow: 0px 0px 3.5px 1px rgb(0, 0, 0);
+}
+
+.ship:hover {
+    transform: scale(1.2);
 }
 
 
 .carrier0 {
-    background: url('./img/5ship\ full-0.jpg');
+    background: url('./img/[5]places\ board[0].jpg');
     background-size: cover;
 }
 
 .carrier1 {
-    background: url('./img/5ship\ full-1.jpg');
+    background: url('./img/[5]places\ board[1].jpg');
     background-size: cover;
 
 }
 
 .carrier2 {
-    background: url('./img/5ship\ full-2.jpg');
+    background: url('./img/[5]places\ board[2].jpg');
     background-size: cover;
 
 }
 
 .carrier3 {
-    background: url('./img/5ship\ full-3.jpg');
+    background: url('./img/[5]places\ board[3].jpg');
     background-size: cover;
 
 }
 
 .carrier4 {
-    background: url('./img/5ship\ full-4.jpg');
+    background: url('./img/[5]places\ board[4].jpg');
     background-size: cover;
-
 }
 
-.controls {
-    height: 100%;
-    width: 15%;
-    border: 1px solid orangered;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    flex-direction: column;
-
+.battleship0 {
+    background: url('img/[4]places\ board[0].png');
+    background-size: cover;
 }
+
+.battleship1 {
+    background: url('img/[4]places\ board[1].png');
+    background-size: cover;
+}
+
+.battleship2 {
+    background: url('img/[4]places\ board[2].png');
+    background-size: cover;
+}
+
+.battleship3 {
+    background: url('img/[4]places\ board[3].png');
+    background-size: cover;
+}
+
+.submarine0 {
+    background: url('./img/[3]places\ board[0].png');
+    background-size: cover;
+}
+
+.submarine1 {
+    background: url('./img/[3]places\ board[1].png');
+    background-size: cover;
+}
+
+.submarine2 {
+    background: url('./img/[3]places\ board[2].png');
+    background-size: cover;
+}
+
+.destroyer0 {
+    background: url('./img/[2]places\ board[0].png');
+    background-size: cover;
+}
+
+.destroyer1 {
+    background: url('./img/[2]places\ board[1].png');
+    background-size: cover;
+}
+
+.rotated{
+    transform: rotate(90deg);
+}
+
+
+#place-player-ship {
+    top: 50%;
+    left: 22%;
+}
+
+
 
 .footer {
     height: 5vh;
@@ -192,6 +361,7 @@ h1 {
 }
 
 .gameOver {
+    display: none;
     position: absolute;
     height: 100vh;
     width: 100vw;
