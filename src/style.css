@@ -224,7 +224,7 @@ h1 {
 }
 
 .water {
-    background-color: #4da7ec;
+    background-color: #58b0f3;
 }
 
 .shipCell {
@@ -235,6 +235,7 @@ h1 {
     box-shadow: inset 0 0 0 1000px rgba(66, 66, 66, 0.7);
     z-index: 2;
 }
+
 
 .water-hit::after {
         content: '';
