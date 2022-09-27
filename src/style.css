@@ -224,15 +224,32 @@ h1 {
 }
 
 .water {
-    background-color: #061e30;
+    background-color: #4da7ec;
 }
 
 .shipCell {
     background-color: blueviolet;
 }
 
-.shipCell.hit {
-    box-shadow: inset 0 0 0 1000px rgba(255, 0, 0, 0.2);
+.hit {
+    box-shadow: inset 0 0 0 1000px rgba(66, 66, 66, 0.7);
+    z-index: 2;
+}
+
+.water-hit::after {
+        content: '';
+        align-self: center;
+        justify-self: center;
+        height: 35%;
+        width: 35%;
+        background-color: #bbb;
+        border-radius: 50%;
+            border: 1px solid black;
+}
+
+.sunk {
+    box-shadow: inset 0 0 0 1000px rgba(255, 0, 0, .7);
+    z-index: 2;
 }
 
 .cell:hover {
@@ -366,4 +383,6 @@ h1 {
     height: 100vh;
     width: 100vw;
     background-color: black;
+    top: 0;
+    left: 0;
 }
