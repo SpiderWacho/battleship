@@ -1,13 +1,19 @@
 const domManipulation = (() => {
+  // helper function
+
   const boardPhase = document.querySelector(".board-phase");
   const boardsDiv = document.createElement("div");
   boardsDiv.classList.add("board-container");
   boardPhase.appendChild(boardsDiv);
-  const divTitle = document.createElement("div");
-  divTitle.classList.add("board-title");
 
-  function displayBoard() {
+  function displayBoard(board) {
     const boardContainer = document.createElement("div");
+    boardContainer.classList.add("board-frame");
+    if (board.boardName === "playerBoard") {
+      boardContainer.id = "player-board";
+    } else {
+      boardContainer.id = "pc-board";
+    }
     for (let i = 0; i < 10; i += 1) {
       for (let j = 0; j < 10; j += 1) {
         const cell = document.createElement("div");
@@ -18,8 +24,10 @@ const domManipulation = (() => {
       }
     }
 
-    boardContainer.classList.add("board-frame");
+    boardsDiv.appendChild(boardContainer);
+  }
 
+  function appendButtons() {
     const buttonsDiv = document.createElement("div");
     buttonsDiv.classList.add("button-container");
     const autoComplete = document.createElement("button");
@@ -32,16 +40,24 @@ const domManipulation = (() => {
 
     buttonsDiv.appendChild(autoComplete);
     buttonsDiv.appendChild(resetShips);
-
-    boardsDiv.appendChild(boardContainer);
     boardsDiv.appendChild(buttonsDiv);
   }
 
-  function actualizePlayerBoard(board) {
+  const getId = (board) => {
+    let id = "";
+    if (board.boardName === "playerBoard") {
+      id = "player-board";
+    } else {
+      id = "pc-board";
+    }
+    return id;
+  };
+
+  function actualizeBoard(board) {
     for (let i = 0; i < 10; i += 1) {
       for (let j = 0; j < 10; j += 1) {
         const cell = document.querySelector(
-          `.board-frame > [data-x="${i}"][data-y="${j}"]`
+          `#${getId(board)} > [data-x="${i}"][data-y="${j}"]`
         );
 
         // Pass a remove atribute first to clean it off it is called again
@@ -150,79 +166,36 @@ const domManipulation = (() => {
     }
   }
 
-  function sunkPcShip(Board) {
+  function sunkShip(Board) {
     for (let i = 0; i < 10; i += 1) {
       for (let j = 0; j < 10; j += 1) {
         if (
           Board.board[i][j].cell !== "Miss" &&
           Board.board[i][j].cell !== "Water"
         ) {
+          const cell = document.querySelector(
+            `#${getId(Board)}> [data-x="${i}"][data-y="${j}"]`
+          );
           if (Board.board[i][j].cell.isSunk()) {
-            const cell = document.querySelector(
-              `.pc-board > [data-x="${i}"][data-y="${j}"]`
-            );
-            cell.style.backgroundColor = "red";
+            cell.classList.add("sunk");
           }
         }
       }
     }
   }
 
-  function actualizePcCell(x, y, Board) {
-    const cell = document.querySelector(`[data-x="${x}"][data-y="${y}"]`);
-
-    if (Board.board[x][y].cell === "Miss") {
-      cell.style.backgroundColor = "blue";
-    } else if (!Board.board[x][y].cell.isSunk()) {
-      cell.style.backgroundColor = "grey";
-    } else {
-      cell.classList.add("hit");
-      sunkPcShip(Board);
-    }
-  }
-
-  function sunkPlayerShip(Board) {
-    for (let i = 0; i < 10; i += 1) {
-      for (let j = 0; j < 10; j += 1) {
-        if (
-          Board.board[i][j].cell !== "Miss" &&
-          Board.board[i][j].cell !== "Water"
-        ) {
-          if (Board.board[i][j].cell.isSunk()) {
-            const cell = document.querySelector(
-              `.board-frame > [data-x="${i}"][data-y="${j}"]`
-            );
-            cell.style.backgroundColor = "red";
-          }
-        }
-      }
-    }
-  }
-
-  function actualizePlayerCell(x, y, Board) {
+  function actualizeCell(x, y, Board) {
     const cell = document.querySelector(
-      `.board-frame > [data-x="${x}"][data-y="${y}"]`
+      `#${getId(Board)} > [data-x="${x}"][data-y="${y}"]`
     );
-
-    if (Board.board[x][y].cell === "Water") {
-      cell.style.backgroundColor = "blue";
+    if (Board.board[x][y].cell === "Miss") {
+      cell.classList.add("water-hit");
     } else if (!Board.board[x][y].cell.isSunk()) {
-      cell.style.backgroundColor = "grey";
+      cell.classList.add("hit");
     } else {
-      cell.style.backgroundColor = "red";
-      sunkPlayerShip(Board);
+      sunkShip(Board);
     }
   }
-
-  function selectShips() {
-    const playBtn = document.querySelector("#play-button");
-    const preGame = document.querySelector(".pregame");
-    playBtn.addEventListener("click", () => {
-      preGame.classList.add("remove");
-    });
-  }
-
-  selectShips();
 
   function markAsSelected(e) {
     const selected = document.querySelectorAll(".selected");
@@ -236,12 +209,12 @@ const domManipulation = (() => {
 
   function removeBoardPhase() {
     const controls = document.querySelector(".controls");
-    const buttons = document.querySelector("button-container");
+    const buttons = document.querySelector(".button-container");
     const startGameBtn = document.querySelector("#start-game");
     const boardContainer = document.querySelector(".board-container");
 
     controls.remove();
-
+    buttons.remove();
     startGameBtn.remove();
     boardPhase.classList.add("in-game");
     boardContainer.classList.add("in-game");
@@ -249,11 +222,11 @@ const domManipulation = (() => {
 
   return {
     displayBoard,
-    actualizePcCell,
-    actualizePlayerCell,
-    actualizePlayerBoard,
+    actualizeCell,
+    actualizeBoard,
     markAsSelected,
     removeBoardPhase,
+    appendButtons,
   };
 })();
 
