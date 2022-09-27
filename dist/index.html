@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Battleship</title>
 <script defer src="main.js"></script></head>
 <body>
         <div class="pregame">
@@ -17,18 +17,19 @@
         </div>
         <div id="image"></div>
         <div class="board-phase"> 
+            
             <div class="controls">
+                <p class="instructions">Select a ship and place it on the board, press the "horizontal" button to change it back and for between horizontal and vertical</p>
                 <button id="btn-orientation">Horizontal</button>
                 <img src="575178780ba99497e862.png" alt="boat" class="ship" data-lenght="5" id="carrier">
-                <img src="92e0f77efbb82983f334.png" alt="boat" class="ship" data-lenght="4" id="battleship">
-                <img src="ae7bae2a46095646f009.png" alt="boat" class="ship" data-lenght="3" id="submarine">
+                <img src="384335f8d3b5d30b651f.png" alt="boat" class="ship" data-lenght="4" id="battleship">
+                <img src="2583a30f70206d83a245.png" alt="boat" class="ship" data-lenght="3" id="submarine">
                 <img src="899085aceacb00383b22.png" alt="boat" class="ship" data-lenght="2" id="destroyer">
             </div>
             <button id="start-game">Start Game</button>
         </div>
-        <div class="game">
-                <div class="boards">
-                </div>
+        <div class="gameOver">
+            <button class="replay">Replay</button>
         </div>
         <footer></footer>
 
