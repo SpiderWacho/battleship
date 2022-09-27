@@ -38,8 +38,13 @@ const domManipulation = (() => {
     resetShips.id = "reset-ship";
     resetShips.textContent = "Clear Board";
 
+    const startGame = document.createElement("button");
+    startGame.id = "start-game";
+    startGame.textContent = "Start Game";
+
     buttonsDiv.appendChild(autoComplete);
     buttonsDiv.appendChild(resetShips);
+    buttonsDiv.appendChild(startGame);
     boardsDiv.appendChild(buttonsDiv);
   }
 
