@@ -32,7 +32,7 @@ const domManipulation = (() => {
     buttonsDiv.classList.add("button-container");
     const autoComplete = document.createElement("button");
     autoComplete.id = "place-player-ship";
-    autoComplete.textContent = "Auto Place Ships";
+    autoComplete.textContent = "Auto Place";
 
     const resetShips = document.createElement("button");
     resetShips.id = "reset-ship";
