@@ -5,6 +5,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 :root {
@@ -47,7 +48,7 @@ button {
 }
 
 .title {
-    font-size: 2em;
+    font-size: 1.2em;
     height: 50vh;
     width: 100vw;
     display: flex;
@@ -68,14 +69,14 @@ button {
 
 #play-button {
     color: black;
-    height: 15%;
+    height: 10%;
     max-height: 100px;
     width: 20%;
     max-width: 150px;
     border: none;
     outline: none;
     background: none;
-    background-color: white;
+    background-color: rgb(223, 223, 223);
     font-size: medium;
     font-weight: bold;
     box-shadow: 0px 0px 2px 1px white;
@@ -140,8 +141,6 @@ button {
 }
 
 
-
-
 .button-container {
     align-self: start;
     margin-bottom: 15%;
@@ -156,7 +155,7 @@ button {
     width: 25%;
     margin-left: 12.5%;
     margin-right: 12.5%;
-    height: 5vh;
+    height: 55px;    
     align-self: flex-end;
     justify-self: center;
     bottom: 5%;
@@ -238,8 +237,8 @@ button {
 .cell {
     box-sizing: border-box;
     margin: 0;
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border: 1px solid black;
     display: flex;
     align-items: center;
@@ -413,377 +412,72 @@ button {
 
 
 @media only screen and (min-width: 992px) {
-    .pregame {
-        position: absolute;
-        display: flex;
-        flex-wrap: nowrap;
-        flex-direction: column;
-        height: 100vh;
-        width: 100vw;
-        justify-content: center;   
-        align-items: center; 
-        background-color: #00111C;
-        background:  radial-gradient(circle, rgba(3,0,60,1) 0%, rgba(0,0,159,1) 28%, rgba(10,10,126,1) 57%, rgba(0,0,148,1) 87%);
-        box-shadow: 2px 0px 3px 1px black;
-        z-index: 2;
-    }
-    
-    @keyframes removePre {
-        from {bottom: 0px;}
-        to {bottom: 100%;}
-    }
-    
-    .pregame.remove {
-        animation: removePre ease-in-out 1.2s forwards;
-    }
-    
-    
-    h1 {
-        color: white;
-    }
     
     .title {
-        height: 10vh;
-        width: 100vw;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        font-family: 'Rubik Mono One', sans-serif;
         font-size: 3em;
-        color: #002E4E;
-        text-decoration: white underline;
+        align-items: flex-end;
     }
-    
-    .play-container {
-        height: 10vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    #play-button {
-        color: black;
-        height: 50px;
-        width: 150px;
-        border: none;
-        outline: none;
-        background: none;
-        background-color: white;
-        font-size: medium;
-        font-weight: bold;
-        box-shadow: 0px 0px 2px 1px white;
-    }
-    
-    #play-button:hover {
-        background-color: rgb(219, 219, 219);
-    }
-    
-    
-    .game {
-        height: 100vh;
-        width: 100%;
-    }
-    
-    .board-phase {
-        height: 100vh;
-        width: 100vw;
-        display: grid;
-        grid-template-columns: 15% auto;
-        grid-template-rows: 10% auto;
-        grid-template-areas: "controls title"
-                             "controls board";
-        background-color: var(--background-color);
-    }
-    
 
-    
-    .controls {
-        border: 3px solid rgb(17, 17, 17);
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        flex-direction: column;
-        grid-area: controls;
-        height: 100vh;
+    .play-container{
+        align-items: flex-start;
     }
-    
-    .instructions {
-        grid-area: controls;
-        align-self: flex-end;
-        justify-self: center;
-        margin: 5%;
+
+    .cell {
+        height: calc(5vh);
+        width: calc(5vh);
     }
-    
-    .controls.hidden {
-        animation: removeControls 1s ease-in-out forwards;
-    }
-    
-    @keyframes removeControls {
-        0% {right: 0px;}
-        to {right: 100%;
-            display: none;}
-    }
-    
-    
-    
-    .board-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        grid-area: board;
-    }
-    
-    
-    .board-container.in-game {
-        flex-wrap: nowrap;
-        height: 100%;
-        width: 100%;
-    }
-    
-    .button-container {
-        align-self: start;
-        margin-bottom: 15%;
-        width: 100%;
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    
-    #place-player-ship, #reset-ship {
-        height: 30px;
-        width: 12%;
-        align-self: flex-end;
-        justify-self: center;
-        bottom: 5%;
-        background-color: #227fc2;
-        border: none;
-        color: white;
-        box-shadow: 0px 0px 3px .8px #00111C;
-    }
-    
-    #place-player-ship:hover, #reset-ship:hover {
-        background-color: #316a96;
-    
-    }
-    
-    
-    #start-game {
-        z-index: 1;
-        grid-area: board;
-        justify-self: center;
-        align-self: flex-end;
-        margin-bottom: 6%;
-        height: 6%;
-        width: 12%;
-        background-color: #002E4E;
-        border: none;
-        color: white;
-        box-shadow: 0px 0px 3px .8px #00111C;
-    }
-    
-    #start-game:hover {
-        background-color: #11388d;
-        box-shadow: 0px 0px 3px .5px rgba(243, 243, 243, 0.267);
-    }
-    
-    .board-title {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        grid-area: title;
-    }
-    
+
     .board-frame {
-        margin: 3%;
-        align-self: flex-start;
-        display: grid;
-        grid-template-columns: repeat(10, auto);
-        grid-template-rows: repeat(10, auto);
-        row-gap: 0;
-        border: 2px solid black;
-        box-shadow: 0px 0px 3px .3px black;
+        margin-top: 3%;
+
         
     }
 
 
+    .board-container {
+        align-items: flex-start;
+        height: 90vh;
+        width: 100vw;
+    }
     
-    .cell {
-        box-sizing: border-box;
-        margin: 0;
-        height: 50px;
-        width: 50px;
-        border: 1px solid black;
+    .board-container::before {
+        color: grey;
+        position: absolute;
+        align-self: flex-start;
+        text-align: center;
+    }
+    .button-container {
+        height: 25%;
+    }
+
+    #start-game {
+        margin-top: 5%;
+    }
+
+    .board-container.in-game::before {
+        font-size: 1.5em;
+        position: relative;
+        left: calc(100vw / 4);
+        top: 5%;
+    }
+
+    .board-container.in-game::after {
+        font-size: 1.5em;
+        position: relative;
+        right: calc(100vw / 4);
+        top: calc(-100vh + 58%);
+    }
+
+    .board-container.in-game {
         display: flex;
+        flex-wrap: nowrap;
         align-items: center;
         justify-content: center;
     }
-    
-    .water {
-        background-color: #58b0f3;
-    }
-    
-    .shipCell {
-        background-color: blueviolet;
-    }
-    
-    .hit {
-        box-shadow: inset 0 0 0 1000px rgba(66, 66, 66, 0.7);
-        z-index: 2;
-    }
-    
-    
-    .water-hit::after {
-            content: '';
-            align-self: center;
-            justify-self: center;
-            height: 35%;
-            width: 35%;
-            background-color: #bbb;
-            border-radius: 50%;
-                border: 1px solid black;
-    }
-    
-    .sunk {
-        box-shadow: inset 0 0 0 1000px rgba(255, 0, 0, .7);
-        z-index: 2;
-    }
-    
-    .cell:hover {
-        background-color: rgb(201, 201, 201);
-    }
-    
-    #btn-orientation {
-        height: 50px;
-        width: 150px;
-        background-color: rgb(209, 147, 31);
-        border: none;
-        box-shadow: 0px 1px 3px 1px;
-    }
-    
-    #btn-orientation:hover {
-        background-color: rgb(204, 154, 60);
-        box-shadow: 0px 0px 3px .1px rgba(245, 245, 245, 0.267);
-    
-    }    
-    
-    .ship {
-        height: auto;
-        width: 150px;
-        object-fit: cover;
-        transition: all ease-in-out 0.2s;
-    }
-    
-    .ship.selected {
-        border: 2px solid rgb(0, 0, 0);
-        box-shadow: 0px 0px 3.5px 1px rgb(0, 0, 0);
-    }
-    
-    .ship:hover {
-        transform: scale(1.2);
-    }
-    
-    
-    .carrier0 {
-        background: url('./img/[5]places\ board[0].jpg');
-        background-size: cover;
-    }
-    
-    .carrier1 {
-        background: url('./img/[5]places\ board[1].jpg');
-        background-size: cover;
-    
-    }
-    
-    .carrier2 {
-        background: url('./img/[5]places\ board[2].jpg');
-        background-size: cover;
-    
-    }
-    
-    .carrier3 {
-        background: url('./img/[5]places\ board[3].jpg');
-        background-size: cover;
-    
-    }
-    
-    .carrier4 {
-        background: url('./img/[5]places\ board[4].jpg');
-        background-size: cover;
-    }
-    
-    .battleship0 {
-        background: url('img/[4]places\ board[0].png');
-        background-size: cover;
-    }
-    
-    .battleship1 {
-        background: url('img/[4]places\ board[1].png');
-        background-size: cover;
-    }
-    
-    .battleship2 {
-        background: url('img/[4]places\ board[2].png');
-        background-size: cover;
-    }
-    
-    .battleship3 {
-        background: url('img/[4]places\ board[3].png');
-        background-size: cover;
-    }
-    
-    .submarine0 {
-        background: url('./img/[3]places\ board[0].png');
-        background-size: cover;
-    }
-    
-    .submarine1 {
-        background: url('./img/[3]places\ board[1].png');
-        background-size: cover;
-    }
-    
-    .submarine2 {
-        background: url('./img/[3]places\ board[2].png');
-        background-size: cover;
-    }
-    
-    .destroyer0 {
-        background: url('./img/[2]places\ board[0].png');
-        background-size: cover;
-    }
-    
-    .destroyer1 {
-        background: url('./img/[2]places\ board[1].png');
-        background-size: cover;
-    }
-    
-    .rotated{
-        transform: rotate(90deg);
-    }
-    
-    
-    #place-player-ship {
-        top: 50%;
-        left: 22%;
-    }
-    
-    
-    
-    .footer {
-        height: 5vh;
-        border-top: 2px black solid;
-    }
-    
-    .gameOver {
-        display: none;
-        position: absolute;
-        height: 100vh;
-        width: 100vw;
-        background-color: black;
-        top: 0;
-        left: 0;
+
+    .board-container.in-game > .board-frame > .cell {
+        height: 6vh;
+        width: 6vh;
     }
 
 }
